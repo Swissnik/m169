@@ -1,0 +1,16 @@
+version: "3"
+services:
+  todo-app:
+    image: ghcr.io/swissnik/m169/demo/todo-app-v2/todo-app:v2
+    ports:
+     - "3000"
+    depends_on:
+     - ghcr.io/swissnik/m169/demo/todo-app-v1/redis-master
+     - ghcr.io/swissnik/m169/demo/todo-app-v1/redis-slave
+  redis-slave:
+    image: ghcr.io/swissnik/m169/demo/todo-app-v1/redis-slave:v1
+    depends_on:
+     - ghcr.io/swissnik/m169/demo/todo-app-v1/redis-master
+  redis-master:
+    image: ghcr.io/swissnik/m169/demo/todo-app-v1/redis-master:v1
+

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  filebrowser:
+    image: hurlenko/filebrowser
+    user: "${admin}:${admin}"
+    ports:
+      - 443:8080
+    volumes:
+      - DATA_DIR:/data
+      - /CONFIG_DIR:/config
+    environment:
+      - FB_BASEURL=/filebrowser
+    restart: always
+  webserver:
+    image: ghcr.io/swissnik/m169/demo/webserver/nginx/nginx:1.0
+    ports:
+      - "80:80"
+    volumes:
+      - DATA_DIR:/usr/share/nginx/html
+
+volumes:
+  DATA_DIR:
