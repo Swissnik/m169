@@ -32,7 +32,7 @@ mkdir /var/www/${name}
 echo "Creating website config..."
 cat <<EOT >> /etc/apache2/sites-available/${name}.conf
 <VirtualHost *:80>
-        ServerName ${name}.gds.int
+        ServerName ${name}.local
         ServerAdmin yannik.noah.zechner@gmail.com
         DocumentRoot /var/www/${name}
         ErrorLog /var/log/apache2/${name}-error.log
