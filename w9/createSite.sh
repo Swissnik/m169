@@ -27,33 +27,16 @@ echo "Check successful."
 
 echo "Creating website..."
 echo "Creating website directory..."
-mkdir /var/www/${name}
-
-echo "Creating website config..."
-cat <<EOT >> /etc/apache2/sites-available/${name}.conf
-<VirtualHost *:80>
-        ServerName ${name}.local
-        ServerAdmin yannik.noah.zechner@gmail.com
-        DocumentRoot /var/www/${name}
-        ErrorLog /var/log/apache2/${name}-error.log
-        CustomLog /var/log/apache2/${name}-access.log combined
-</VirtualHost>
-EOT
-
-echo "Enabling website..."
-cd /etc/apache2/sites-available/; a2ensite ${name}.conf > /dev/null 2>&1
-
-echo "Restarting apache..."
-systemctl restart apache2
+mkdir /var/www/html/${name}
 
 echo "Creating user..."
-useradd ${name} -d /var/www/${name}
+useradd ${name} -d /var/www/html/${name}
 
 echo "Setting user password..."
 echo "${name}:${password}" | chpasswd
 
 echo "Setting user home..."
-chown -R ${name}:${name} /var/www/${name}
+chown -R ${name}:${name} /var/www/html/${name}
 
 echo "Activating FTP login..."
 echo ${name} >> /etc/vsftpd.userlist
