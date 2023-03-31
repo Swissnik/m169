@@ -1,5 +1,5 @@
 # Dokumentation Woche 4
-Autor: Swissnik\
+Autor: Yannik Zechner\
 Modul: 169\
 Datum: 24.02.2023\
 Version: 1.0

@@ -1,5 +1,5 @@
 # Dokumentation Woche 3
-Autor: Swissnik\
+Autor: Yannik Zechner\
 Modul: 169\
 Datum: 22.02.2023\
 Version: 1.2
