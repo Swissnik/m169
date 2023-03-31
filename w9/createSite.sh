@@ -33,7 +33,7 @@ echo "Creating website config..."
 cat <<EOT >> /etc/apache2/sites-available/${name}.conf
 <VirtualHost *:80>
         ServerName ${name}.gds.int
-        ServerAdmin webmaster@gilgends.com
+        ServerAdmin yannik.noah.zechner@gmail.com
         DocumentRoot /var/www/${name}
         ErrorLog /var/log/apache2/${name}-error.log
         CustomLog /var/log/apache2/${name}-access.log combined
