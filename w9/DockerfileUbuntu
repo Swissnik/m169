@@ -1,17 +1,17 @@
-FROM ubuntu:22.04
+ROM ubuntu:22.04
+
+ENV TZ=Europe/Zurich
 
 RUN apt update && \
-  apt install -y apache2 software-properties-common ca-certificates lsb-release apt-transport-https php8.2 vsftpd && \
+  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+  apt install -y software-properties-common ca-certificates lsb-release apt-transport-https && \
   LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php && \
-  
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
-    service apache2 reload && 
-    service apache2 restart
-    
-COPY createSite.sh /etc/createSite.sh
+  apt install -y apache2 php8.2 vsftpd && \
+  echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+COPY createSite.sh createSite.sh
 COPY vsftpd.conf /etc/vsftpd.conf
-RUN systemctl restart vsftpd.service
 
 EXPOSE 80 21
 
-CMD ["/bin/bash"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
